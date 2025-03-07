@@ -1,7 +1,11 @@
-const Document = ('../models/Document.js');
+const Document = require('../models/document.js'); // Corrige la importación
 
 const documentController = {
   uploadDocument: (req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No se proporcionó ningún archivo' });
+    }
+
     const documentData = {
       nombredocumento: req.body.nombredocumento,
       rutadocumento: req.file.path,
