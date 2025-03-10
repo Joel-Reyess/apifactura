@@ -1,20 +1,22 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const bodyParser = require('body-parser');
 const documentRoutes = require('./routes/documentRoutes.js');
 const connection = require('./config/db.js');
-//const folderRoutes = require('./routes/folderRoutes.js');
+const folderRoutes = require('./routes/folderRoutes.js');
 //const userRoutes = require('./routes/userRoutes.js');
 
 const app = express();
 
-app.use(cors()); // Permite solicitudes desde otros dominios
-app.use(bodyParser.json()); // Parsea el cuerpo de las solicitudes en formato JSON
+app.use(cors());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', documentRoutes);
-// app.use('/api/carpetas', folderRoutes);
+app.use('/api', folderRoutes);
 // app.use('/api/usuarios', userRoutes);
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 app.get('/', (req, res) => {
   res.send('API de Facturación funcionando');

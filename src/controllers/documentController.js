@@ -1,4 +1,4 @@
-const Document = require('../models/document.js'); // Corrige la importación
+const Document = require('../models/document.js');
 
 const documentController = {
   uploadDocument: (req, res) => {
@@ -8,7 +8,7 @@ const documentController = {
 
     const documentData = {
       nombredocumento: req.body.nombredocumento,
-      rutadocumento: req.file.path,
+      rutadocumento: req.file.filename,
       tipodocumento: req.body.tipodocumento,
       tamanodocumento: req.file.size,
       idcarpeta: req.body.idcarpeta || null
