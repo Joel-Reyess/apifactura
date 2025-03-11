@@ -28,7 +28,17 @@ const documentController = {
       }
       res.json(results);
     });
-  }
+  },
+  asignarCarpeta: (req, res) => {
+    const { iddocumento, idcarpeta } = req.body;
+
+    Document.updateCarpeta(iddocumento, idcarpeta, (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json({ message: 'Archivo asignado a la carpeta correctamente' });
+    });
+  },
 };
 
 module.exports = documentController;

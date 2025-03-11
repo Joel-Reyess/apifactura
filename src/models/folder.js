@@ -1,7 +1,7 @@
 const connection = require('../config/db.js');
 
 const Folder = {
-    create: (folderDate, callback) => {
+    create: (folderData, callback) => {
         const query = `
         INSERT INTO carpetas (nombrecarpeta)
         VALUES (?)
