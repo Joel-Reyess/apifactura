@@ -21,7 +21,15 @@ const Document = {
       LEFT JOIN carpetas c ON d.idcarpeta = c.idcarpeta
     `;
     connection.query(query, callback);
-  }
+  },
+  updateCarpeta: (iddocumento, idcarpeta, callback) => {
+    const query = `
+      UPDATE documentos
+      SET idcarpeta = ?
+      WHERE iddocumento = ?
+    `;
+    connection.query(query, [idcarpeta, iddocumento], callback);
+  },
 };
 
 module.exports = Document;

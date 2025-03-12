@@ -1,4 +1,5 @@
 const Document = require('../models/document.js');
+const connection = require('../config/db.js');
 
 const documentController = {
   uploadDocument: (req, res) => {
@@ -37,6 +38,21 @@ const documentController = {
         return res.status(500).json({ error: err.message });
       }
       res.json({ message: 'Archivo asignado a la carpeta correctamente' });
+    });
+  },
+  getDocumentosPorCarpeta: (req, res) => {
+    const { id } = req.params;
+  
+    const query = `
+      SELECT * FROM documentos
+      WHERE idcarpeta = ?
+    `;
+  
+    connection.query(query, [id], (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(results);
     });
   },
 };
