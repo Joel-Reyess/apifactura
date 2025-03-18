@@ -30,6 +30,13 @@ const Document = {
     `;
     connection.query(query, [idcarpeta, iddocumento], callback);
   },
+  delete: (iddocumento, callback) => {
+    const query = `
+      DELETE FROM documentos
+      WHERE iddocumento = ?
+    `;
+    connection.query(query, [iddocumento], callback);
+  },
 };
 
 module.exports = Document;

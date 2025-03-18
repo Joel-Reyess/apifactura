@@ -7,5 +7,6 @@ router.post('/documentos', uploadMiddleware.single('archivo'), documentControlle
 router.get('/documentos', documentController.getDocuments);
 router.post('/documentos/asignar-carpeta', documentController.asignarCarpeta);
 router.get('/documentos/carpeta/:id', documentController.getDocumentosPorCarpeta);
+router.delete('/documentos/:id', documentController.deleteDocument);
 
 module.exports = router;
