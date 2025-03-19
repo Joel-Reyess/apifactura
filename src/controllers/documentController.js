@@ -68,6 +68,19 @@ const documentController = {
       res.json({ message: 'Documento eliminado correctamente' });
     });
   },
+  desasignarDeCarpeta: (req, res) => {
+    const { id } = req.params;
+
+    Document.updateCarpeta(id, null, (err, result) => { // Establece idcarpeta a null
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: 'Documento no encontrado' });
+      }
+      res.json({ message: 'Documento desasignado de la carpeta correctamente' });
+    });
+  },
 };
 
 module.exports = documentController;
