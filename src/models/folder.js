@@ -14,6 +14,13 @@ const Folder = {
         `;
         connection.query(query, callback);
     },
+    delete: (idcarpeta, callback) => {
+        const query = `
+            DELETE FROM carpetas
+            WHERE idcarpeta = ?
+        `;
+        connection.query(query, [idcarpeta], callback);
+    },
 };
 
 module.exports = Folder;
