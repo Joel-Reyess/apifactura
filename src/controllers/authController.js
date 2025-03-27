@@ -39,17 +39,17 @@ const authController = {
   login: async (req, res) => {
     const { correousuario, password } = req.body;
   
-    console.log("Datos recibidos en el backend:", { correousuario, password });
+    //console.log("Datos recibidos en el backend:", { correousuario, password });
   
     try {
       // Buscar el usuario por correo electrónico
       User.findByEmail(correousuario, (err, results) => {
         if (err) {
-          console.error("Error al buscar el usuario:", err);
+          //console.error("Error al buscar el usuario:", err);
           return res.status(500).json({ error: err.message });
         }
         if (results.length === 0) {
-          console.log("Usuario no encontrado");
+          //console.log("Usuario no encontrado");
           return res.status(400).json({ error: 'Credenciales inválidas' });
         }
   
@@ -69,7 +69,7 @@ const authController = {
   
           // Generar un token JWT
           const token = jwt.sign({ id: user.idusuario, correousuario: user.correousuario }, 'tu_secreto_jwt', { expiresIn: '1h' });
-          console.log("Token generado:", token);
+          //console.log("Token generado:", token);
   
           // Devuelve el token en la respuesta
           res.json({ token });
